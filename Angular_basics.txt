@@ -46,6 +46,11 @@ The property 'imports' in @NgModule() JS object simply allows us to add some oth
 
 If you generate component through CLI, it is automatically added to app.module.ts, hence recommended to use CLI approach.
 
-
-
+			SPEC File details
 SPEC file in a component is used for testing.
+
+			Templates
+External template file = separate component.html file that gets created inside the component (refernced by 'templateUrl' in the JS object in @Component decorator in component.ts)
+Internal template = html code within the component.ts file (refernced by 'template' in the JS object in @Component decorator in component.ts)
+
+Either template or templateUrl must be present in the JS object.
