@@ -1,0 +1,51 @@
+Angular is a JS framework which allows you to create reactive Single-Page-Applications (SPAs).
+
+
+			How Angular works in browser:
+
+Index.html is the only page served on the client side (browser)
+
+In the project, 'main.ts' is loaded first on runtime (and adds a bunch of 'script' elements in the end of the index.html file in the browser) which basically points to 'app.module' which contains 'bootstrap: [AppComponent]' so basically, the code inside AppComponent gets into index.html inside '<app-root>'
+
+
+
+			Components
+Components are key features in Angular. You build your whole application by composing it from a couple of components, which are created by us.
+
+Angular uses componnets to build webpages.
+
+We put the rest of the components inside the 'AppComponent', thier selecteor would be added into the 'app.component.html' file
+
+To build a component, create new folder inside the 'app' folder and name it such that folder name = component name. Each component typically should have its own folder. To create the component inisde this folder, convention: '[component_name].component.ts' (eg, 'server.component.ts')
+
+
+Component = TS class, it has to be exported to be used outside the file it is being defined
+
+naming convention: 'export class ServerComponent' (name of the component, followed by desscription)
+
+To tell angular it is not just any typescript but a component, a decorator(@Component()) is added on top of the class (Decorators enhance your elements you use in code)
+
+To import the decorator : import { Component } from '@angular/core';
+
+You need to pass a JS object to @Component() decorator to configure it 
+In the js object: following properties are important: 'selector'and 'templateUrl'
+
+
+
+			Modules
+To use our own components, some modification is needed in 'app module'
+Angular uses modules to basically bundle different pieces, e.g. components of your app into 'packages'
+A module is bundle of functionalities of our app and it gives Angular the information which features does my app have and use.
+
+Register your component in 'app.module.ts' inside the array in 'declarations' property in JS object of @NgModule() decorator. 
+
+
+No 'ts' extension while importing the component, they are added by 'webpack' which bunldes our project automatically.
+
+The property 'imports' in @NgModule() JS object simply allows us to add some other modules to this module
+
+If you generate component through CLI, it is automatically added to app.module.ts, hence recommended to use CLI approach.
+
+
+
+SPEC file in a component is used for testing.

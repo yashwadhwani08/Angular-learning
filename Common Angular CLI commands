@@ -1,0 +1,6 @@
+ng new [project-workspace-name] ----> Creates a new Angular workspace.
+
+ng generate component [name] -----> Creates a new, generic component definition in the given project.
+
+ng g c [name] == ng generate component [name]
+

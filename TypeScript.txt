@@ -1,0 +1,5 @@
+TypeScript is super set to JavaScript. It offers more features than vanilla JS (e.g. types, Classes, Interfaces, ...)
+
+TypeScript doesn't run in browser, so it is compiled to JavaScript in the end, this compilation is taken care by CLI. 
+
+Technically, we can write Angular in JavaScript, but generally not done because of more features being offered by TS, to make the application we build more robust
