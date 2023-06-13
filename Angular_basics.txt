@@ -53,4 +53,6 @@ SPEC file in a component is used for testing.
 External template file = separate component.html file that gets created inside the component (refernced by 'templateUrl' in the JS object in @Component decorator in component.ts)
 Internal template = html code within the component.ts file (refernced by 'template' in the JS object in @Component decorator in component.ts)
 
+Inside the 'template' property in JS object, you can write html code, you can use back-ticks (`) to write multi-line html code. 
+
 Either template or templateUrl must be present in the JS object.
