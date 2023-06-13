@@ -56,3 +56,11 @@ Internal template = html code within the component.ts file (refernced by 'templa
 Inside the 'template' property in JS object, you can write html code, you can use back-ticks (`) to write multi-line html code. 
 
 Either template or templateUrl must be present in the JS object.
+
+			Component Styles
+We can use bootstrap defined html classes for styling or create/overwrite our style just like normal css in component.css
+
+We can make use of 'styleUrls' (an 'array', since multiple stylesheets could be referenced here) to refernce to an eternal css file
+and 'styles' (an array of strings) to write inline styles for the component
+
+Can't use both 'styles' and 'styleUrls'. Only one of them can be used!!
