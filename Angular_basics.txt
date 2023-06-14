@@ -64,3 +64,6 @@ We can make use of 'styleUrls' (an 'array', since multiple stylesheets could be 
 and 'styles' (an array of strings) to write inline styles for the component
 
 Can't use both 'styles' and 'styleUrls'. Only one of them can be used!!
+
+			Selector
+Selector could be an element, ('app-servers'), could be an attribute ('[app-servers]'), could be class ('.app-severs')
