@@ -67,3 +67,5 @@ Can't use both 'styles' and 'styleUrls'. Only one of them can be used!!
 
 			Selector
 Selector could be an element, ('app-servers'), could be an attribute ('[app-servers]'), could be class ('.app-severs')
+
+Selecting by id isn't supported by Angular.
