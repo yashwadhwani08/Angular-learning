@@ -69,3 +69,16 @@ Can't use both 'styles' and 'styleUrls'. Only one of them can be used!!
 Selector could be an element, ('app-servers'), could be an attribute ('[app-servers]'), could be class ('.app-severs')
 
 Selecting by id isn't supported by Angular.
+
+
+			Data Binding
+Data Binding = Communication between TypeScript code of component(Business logic) and the template(HTML)
+
+A) Output data from Component to Template ways/forms:
+1) String interpolation ({{data}})
+2) Property Binding ([property]="data")
+
+B) React to (Users) Events (from Template to Component communication):
+1) Event Binding ((event)="expression")
+
+C) Coombination of both = Two-Way-Binding (([ng-Model])="data")
