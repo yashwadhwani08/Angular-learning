@@ -82,3 +82,6 @@ B) React to (Users) Events (from Template to Component communication):
 1) Event Binding ((event)="expression")
 
 C) Coombination of both = Two-Way-Binding (([ng-Model])="data")
+
+			STRING INTERPOLATION
+String interpolation refers to supplying the property(variable) from component to template, where in template '{{}}' syntax is used where in between TypeScript expression that could be resolved into string at the end could be written
