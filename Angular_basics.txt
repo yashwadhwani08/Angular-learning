@@ -101,3 +101,13 @@ You give a value to the property by an expression between the quotation marks ("
 We bind to the HTML element property(native element property) the TypeScript property. So as soon as the TypeScript property changes, the property of the HTML element gets changed in the DOM at runtime.
 
 Besides binding to HTML properties, we can also bind to other properties for example of 'directives' and our 'own components'.
+
+
+			PROPERTY BINDING VS STRING INTERPOLATION
+When you want to output something in your template, print some text to it, use string interpolation.
+
+If you want to change some property, be that of an HTMl element/directive/component, use property binding.
+
+Don't mix property binding ([HTML_property]="TS_property") and string interpolation({{TS_property}})!
+
+In property binding, between the quotation marks (""), write TypeScript expression which will return the value the HTML property expects. A method could also be called here.
