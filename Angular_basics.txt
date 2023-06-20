@@ -111,3 +111,16 @@ If you want to change some property, be that of an HTMl element/directive/compon
 Don't mix property binding ([HTML_property]="TS_property") and string interpolation({{TS_property}})!
 
 In property binding, between the quotation marks (""), write TypeScript expression which will return the value the HTML property expects. A method could also be called here.
+
+
+			EVENT BINDING
+Generally, the methods that are called in response to an event start with 'on' (Not a fixed rule, but makes it easier to understand that this is a method meant for response to an event.)
+
+Typically, we have onclick attribute on HTML element where we can execute some JavaScript code but we don't use that with Angular.
+
+Event Binding can be done to all the events being made available by the HTMl attribute, you are writing the Angular binding on
+
+Syntax for event binding:
+(click)="onCreateServer()"
+
+Between the "", you put in the code you want to execte once the event occurs, often method is called here. Since we want it to be executed when the event occurs we append () at the end of method name. Instead of method we could have put in the code we wish to execute here, not  a very good practice if there is lot of logic.
