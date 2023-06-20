@@ -124,3 +124,7 @@ Syntax for event binding:
 (click)="onCreateServer()"
 
 Between the "", you put in the code you want to execte once the event occurs, often method is called here. Since we want it to be executed when the event occurs we append () at the end of method name. Instead of method we could have put in the code we wish to execute here, not  a very good practice if there is lot of logic.
+
+Passing and Using Data with Event Binding:
+	'$event' (sort of reserved variable name) is used to give access about the event data. To capture data, '$event' is passed as an arguement to the method we are calling, or used anywhere between these "" in the code we are executing on that event.
+
