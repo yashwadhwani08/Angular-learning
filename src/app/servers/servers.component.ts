@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class ServersComponent implements OnInit {
   allowNewServer: boolean = false;
   serverCreationStatus:string = 'No server was created!';
+  serverName:string = '';
 
   // A constructor is a method executed at the point of time, this component is created by angular
   constructor() {
@@ -26,5 +27,13 @@ export class ServersComponent implements OnInit {
   //the starting of method with 'on' makes it clear that this will be triggered from within the HTML template
   onCreateServer(){
     this.serverCreationStatus = 'Server was created!';
+  }
+
+  onUpdateServerName(event: Event){
+    // this.serverName = event.target.value; //This is fine and will work!
+
+    // This '<HTMLInputElement>', we are doing so that we inform TypeScript that we know that the type of the HTMl element of this event will be an HTML Input Element. It is an 'explicit casting'
+    this.serverName = (<HTMLInputElement>event.target).value;
+    // console.log(event);
   }
 }
