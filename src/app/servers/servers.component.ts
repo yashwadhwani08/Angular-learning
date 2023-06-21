@@ -14,6 +14,7 @@ export class ServersComponent implements OnInit {
   allowNewServer: boolean = false;
   serverCreationStatus:string = 'No server was created!';
   serverName:string = 'Test-server';
+  serverCreated:boolean = false;
 
   // A constructor is a method executed at the point of time, this component is created by angular
   constructor() {
@@ -26,6 +27,7 @@ export class ServersComponent implements OnInit {
 
   //the starting of method with 'on' makes it clear that this will be triggered from within the HTML template
   onCreateServer(){
+    this.serverCreated = true;
     this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
   }
 

@@ -12,6 +12,9 @@
 <!-- PROPERTY BINDING for printing allowNewServer property value -->
 <!-- <p [innerText]="allowNewServer"></p> -->
 
-<p>{{ serverCreationStatus }}</p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+
+<!-- ngIf directive in action, the element would be in DOM based on the value of serverCreated -->
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
 <app-server></app-server>
 <app-server></app-server>
