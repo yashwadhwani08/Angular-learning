@@ -169,3 +169,6 @@ Added as an attribute with *ngIf, * is required because it is a structural direc
 It either adds the element or doesn't add it.
 
 The value to ngIf is given between the "", the value is an expression which would result in true or false, deciding whether this should be added or not.
+
+ngIf condition can be enhanced by else condition, so in the else element, you can place a local refernce(e.g.: "#noServer") and use the directive component shipped with Angular 'ng-template', it can be used to mark places in the DOM.
+We can enhance ngIf by adding else then the local refernce we used in the ng-template component.
