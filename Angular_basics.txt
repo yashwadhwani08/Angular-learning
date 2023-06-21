@@ -161,3 +161,11 @@ export class TurnGreenDirective{
 }
 
 There are a couple of built-in directives.
+
+			ngIf DIRECTIVE
+This directive can be used to output data conditionally.
+
+Added as an attribute with *ngIf, * is required because it is a structural directive, i.e. it changes the structure of our DOM.
+It either adds the element or doesn't add it.
+
+The value to ngIf is given between the "", the value is an expression which would result in true or false, deciding whether this should be added or not.
