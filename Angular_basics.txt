@@ -137,3 +137,27 @@ Two way binding  = combination of property binding and event binding
 Combine [](property binding) with ()(event binding) = [(ngModel)](2-way binding)
 
 [(ngModel)] = 'TS_property'
+
+
+			DIRECTIVES
+Directives = Instructions in the DOM
+Components are directives(with template) as we place there selector in the templates and accordingly the DOM adds our code in the template where the selecteor is used. 
+
+There are other directive without a template.
+e.g.: <p appTurnGreen>Receives a green background</p>
+
+Here, 'appTurnGreen' would be a custom directive we could build.
+
+We typically add directives with attribute selectors, but technically the selecteor of a directive can be configured just like the selecteor of a component, hence we can use CSS classes or the element style, but we use the typical attribute style.
+
+
+Angular would find this instruction from the component.ts file where we have defined our customed directive using the directive decorator to inform Angular
+@Directive({
+	selecteor: '[appTurnGreen]'
+})
+
+export class TurnGreenDirective{
+	...
+}
+
+There are a couple of built-in directives.
