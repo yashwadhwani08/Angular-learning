@@ -185,3 +185,24 @@ ngStyle is an attribute directive. It is used to style elements dynamically.
 <p [ngStyle]="{'background-color': getColor()}">
 
 In the above example, since the property of this directive is also ngStyle, hence we have done the property binding here on ngStyle directive!
+
+			ngClass
+ngClass allows us to dynamically add or remove CSS classes.
+
+Note:
+<p [ngStyle]="{'background-color': getColor()}" [ngClass]="{online: serverStatus === 'online'}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>
+
+In the above example, we have passed a JS object, this is specific to this property of this directive (ngClass).
+
+Each property we may bind to may take a different value.
+
+Like disabled takes true or false, this property of ngClass takes a JS object.
+
+Here JS object of ngClass works like this:
+	Key-value pairs. The keys are the CSS class names and values are the conditions determining whether this class should be attached or not.
+
+	In the above example, we have an 'online' class, (we could wrapped inside a quotation mark i.e.
+	(<p [ngStyle]="{'background-color': getColor()}" [ngClass]="{'online': serverStatus === 'online'}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>))
+
+	The condition checking whether the server status is online is the value in the JS object for the key 'online'.
+	
