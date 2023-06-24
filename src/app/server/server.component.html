@@ -2,4 +2,9 @@
 <!-- <p>Server with ID {{ serverId }} is {{ serverStatus }}</p> -->
 
 <!-- Using TypeScript Method -->
-<p [ngStyle]="{'background-color': getColor()}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>
+<!-- <p [ngStyle]="{'background-color': getColor()}" [ngClass]="serverStatus==='online'?'online':''">Server with ID {{ serverId }} is {{ getServerStatus() }}</p> -->
+
+<p [ngStyle]="{'background-color': getColor()}" [ngClass]="{online: serverStatus === 'online'}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>
+
+
+<!-- In the above example, we have passed a JS object, this is specific to this property of this directive (ngClass).-->
