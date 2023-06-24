@@ -205,4 +205,15 @@ Here JS object of ngClass works like this:
 	(<p [ngStyle]="{'background-color': getColor()}" [ngClass]="{'online': serverStatus === 'online'}">Server with ID {{ serverId }} is {{ getServerStatus() }}</p>))
 
 	The condition checking whether the server status is online is the value in the JS object for the key 'online'.
-	
+
+
+			ngFor DIRECTIVE
+ngFor is a structural directive, hence we need to use *, in front of it while using it.
+In the right hand of side, we define a local variable for inside a loop, then 'of' then TS property we created in the component.ts file.
+
+e.g.: *ngFor="let server of servers"
+
+Individual elemnts(not index!) of the servers array is given to server in iterations.
+
+Then this server variable can be used in templte.
+
