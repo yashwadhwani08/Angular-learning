@@ -217,3 +217,11 @@ Individual elemnts(not index!) of the servers array is given to server in iterat
 
 Then this server variable can be used in templte.
 
+Note:
+	Current index of iteration example:
+	<div *ngFor="let buttonClick of buttonClicks; let i=index">
+		<!-- Here, i points to current index of the iteration, '=index' is reserved expression -->
+		<p [ngStyle]="{backgroundColor: i >= 4 ? 'blue' :''}" [ngClass]="{'future-logs': i >= 4}">{{ buttonClick }}</p>
+	</div>
+
+
