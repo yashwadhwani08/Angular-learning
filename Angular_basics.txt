@@ -81,7 +81,7 @@ A) Output data from Component to Template ways/forms:
 B) React to (Users) Events (from Template to Component communication):
 1) Event Binding ((event)="expression")
 
-C) Coombination of both = Two-Way-Binding (([ng-Model])="data")
+C) Combination of both = Two-Way-Binding (([ng-Model])="data")
 
 			STRING INTERPOLATION
 String interpolation refers to supplying the property(variable) from component to template, where in template '{{}}' syntax is used where in between TypeScript expression that could be resolved into string at the end could be written. We can't write multi-line expression between the {{}} synatx in template, can't write block expressions (if/for blocks), can write a ternary expression.
