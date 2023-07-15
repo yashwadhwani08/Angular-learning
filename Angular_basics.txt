@@ -225,3 +225,5 @@ Note:
 	</div>
 
 
+			DEBUGGING
+Use 'sourcemaps' in the browser to debug the logical errors. 
