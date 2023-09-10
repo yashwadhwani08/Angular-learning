@@ -227,3 +227,38 @@ Note:
 
 			DEBUGGING
 Use 'sourcemaps' in the browser to debug the logical errors. 
+
+			PROPERTY AND EVENT BINDING
+Note: Property and Event Binding is not only limited to HTML elements(Native Properties and events) but we can use it with Directives(Custom properties and Events) we can also use it on our own components(Custom properties and Events)
+
+For binding to a custom property on a compoent so that the property can be utilised by other components, decorator '@Input()' has to be given
+
+Assigning an alias to custom properties:
+	@Input('srvElement') element: {type: string, name: string, content: string};
+
+and in parent component html:
+ <app-server-element [srvElement]="serverElement"></app-server-element>
+
+In case an alias is defined, only that work, not the property defined in the component.
+
+Binding to custom events:
+	serverCreated = new EventEmitter<{
+    serverName: string;
+    serverContent: string;
+  }>();
+
+	EventEmiiter is an object in Angular framework which allows to you emit your own events. To be able to bind to the event, we used '@Output()' decorator 
+Alias is same as in binding to custom properties:
+@Output('bpCreated') blueprintCreated = new EventEmitter<{
+    serverName: string;
+    serverContent: string;
+  }>();
+  
+  Action on which custom event should be triggered.
+  onAddBlueprint() {
+    this.blueprintCreated.emit({
+      serverName: this.newServerName,
+      serverContent: this.newServerContent,
+    });
+  }
+  
