@@ -228,7 +228,7 @@ Note:
 			DEBUGGING
 Use 'sourcemaps' in the browser to debug the logical errors. 
 
-			PROPERTY AND EVENT BINDING
+			CUSTOM PROPERTY AND EVENT BINDING
 Note: Property and Event Binding is not only limited to HTML elements(Native Properties and events) but we can use it with Directives(Custom properties and Events) we can also use it on our own components(Custom properties and Events)
 
 For binding to a custom property on a compoent so that the property can be utilised by other components, decorator '@Input()' has to be given
@@ -261,4 +261,16 @@ Alias is same as in binding to custom properties:
       serverContent: this.newServerContent,
     });
   }
+  
+ The custom property and event binding are key features in component communication. Through services too, components can communicate with each other.
+
+
+			VIEW ENCAPSULATION
+Generally, in CSS working, it doesn't care in which css file you define the rule, it simply is applied to a whole document normallly. View Encapsulation is a behavior enforced by Angular, meaning CSS properties defined inside the component will be applied to the content of that component, not to any other component outside of it. The way Angular does view encapsulation is by giving the same attribute to all the element in a component.
+
+We can override view encapsulation, add this to @Component in component.ts:
+encapsulation: ViewEncapsulation.None
+
+ViewEncapsulation.Emulated is default, hence we don't need to choose that
+Using ViewEncapsulation.None prevents angular from adding the attributes to the elements of that particular component. Now if we define any css file for this file, they will get applied globally, not just to this component specifically.
   
