@@ -273,4 +273,11 @@ encapsulation: ViewEncapsulation.None
 
 ViewEncapsulation.Emulated is default, hence we don't need to choose that
 Using ViewEncapsulation.None prevents angular from adding the attributes to the elements of that particular component. Now if we define any css file for this file, they will get applied globally, not just to this component specifically.
+
+
+			USING LOCAL REFERENCES IN TEMPLATES
+Local Reference can be plced on any HTMl element, you can add it with '#' (e.g.: '#serverName'). This basically gives us a reference to this element, not its value, rather to the whole HTML element with its properties. We can pass this local reference to everywhere inside the tempplate (e.g.:
+
+	<button (click)="onAddServer(serverName)">Add Server</button>
+), but we cannot use them as it is inside our typescript code. Since we have called this onAddServer() method isnide our template hence we are able to use serverNameInput, and this way we are able to pass it to the TS code.
   
