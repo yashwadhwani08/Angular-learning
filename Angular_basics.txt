@@ -293,4 +293,19 @@ Here, the type of serverContentInput gives ElementRef (not the direct HTMLElemen
 
 When passing the reference via ViewChild, it gives us the type 'ElementRef' (an angular type, imported via @angular/core), not the direct element itslef as in case of passing local-reference via method to TS code. We can access the element via a property it has, 'nativeElement' property. With this we get direct access to the elements in our DOM, through @ViewChild.
 
-We can control the properties of the HTML template through our typescript code via Local reference; however not recommended. We should do string interpolation or property binding rather using this method to output something in the DOM. Directives offer a better way of manipulating the DOM.  
+We can control the properties of the HTML template through our typescript code via Local reference; however not recommended. We should do string interpolation or property binding rather using this method to output something in the DOM. Directives offer a better way of manipulating the DOM.
+
+			
+			PROJECTING CONTENT INTO COMPONENTS USING ng-content
+This is yet another way to pass data around in our angular application. Sometimes, we have complex HTML code which we want to pass into a component from outside. If we try passing some other HTML code inside the opening and closing tags of our own components, it doesn't work (e.g.
+
+<app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement">
+        <!-- Testing if we can pass some other HTML code inside the opening and closing tags of our own components. Result => No, it doesn't work! -->
+        <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
+        </p>
+      </app-server-element>
+). It doesn't give any error, but the <p> tag result is not displayed on the DOM. It is the default behavior. Everything you place between the opening and closing tag of your own component, is lost by default. We can change this default behavior by using a directive, ng-content
+
+Say you want to display that complex HTMl code as a part of server-element component template, you simply write <ng-content></ng-content> where the HTML code will reside, using ng-content, Angular will put everything it found between the opening and closing tags of our custom components and place it here. This is called as projection in component where we used ng-content directive/hook.
