@@ -280,4 +280,17 @@ Local Reference can be plced on any HTMl element, you can add it with '#' (e.g.:
 
 	<button (click)="onAddServer(serverName)">Add Server</button>
 ), but we cannot use them as it is inside our typescript code. Since we have called this onAddServer() method isnide our template hence we are able to use serverNameInput, and this way we are able to pass it to the TS code.
-  
+
+			GETTING ACCESS TO THE TEMPLATE AND DOM WITH @ViewChild
+With @ViewChild, we get direct access to elements from within our code (earlier we got access to the local-refernce via a method we used where local reference was passed.) Using @ViewChild, we get access to the element even before we call the element. The arguement to ViewChild method is the selector of the element (not like CSS selector, but the name of the local reference as a string as we gave is considered a selector here). We can also give a component as an arguement in the ViewChild() method if we are using that component within other component (e.g. in app-component => @ViewChild(CockpitComponent)), note CockpitComponent has not been passed as a string here, this would get access to the first occurence of the cockpit component in the app component.
+
+ViewChild example with a local reference:
+
+@ViewChild('serverContentInput', { static: false }) 
+serverContentInput;
+
+Here, the type of serverContentInput gives ElementRef (not the direct HTMLElement itself)
+
+When passing the reference via ViewChild, it gives us the type 'ElementRef' (an angular type, imported via @angular/core), not the direct element itslef as in case of passing local-reference via method to TS code. We can access the element via a property it has, 'nativeElement' property. With this we get direct access to the elements in our DOM, through @ViewChild.
+
+We can control the properties of the HTML template through our typescript code via Local reference; however not recommended. We should do string interpolation or property binding rather using this method to output something in the DOM. Directives offer a better way of manipulating the DOM.  
