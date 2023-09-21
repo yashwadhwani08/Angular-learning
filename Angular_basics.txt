@@ -309,3 +309,26 @@ This is yet another way to pass data around in our angular application. Sometime
 ). It doesn't give any error, but the <p> tag result is not displayed on the DOM. It is the default behavior. Everything you place between the opening and closing tag of your own component, is lost by default. We can change this default behavior by using a directive, ng-content
 
 Say you want to display that complex HTMl code as a part of server-element component template, you simply write <ng-content></ng-content> where the HTML code will reside, using ng-content, Angular will put everything it found between the opening and closing tags of our custom components and place it here. This is called as projection in component where we used ng-content directive/hook.
+
+
+			UNDERSTANDING THE COMPONENT LIFECYCLE
+ngOnInit() is a lifecycle hook of many lifecycle hooks that Angular supports.
+
+If a new component is created in Angular, Angular goes through a couple of steps in the creation process of a component. Angular gives us a chance to hook into these phases and execute some code. We can call some methods which Angular will call while the creation process.
+
+
+ngOnChanges() ---> Called after a bound input property changes (maybe executed multiple times. Executed right at the start when the component is created, then always whenever one of our bound input properties change, propeties decorated with @Input)
+
+ngOnInit() ---> Called once the component is initialized. Initialization does not mean we can see it, as in it has yet not been added to the DOM, but Angular finished the basic initialization. Our properties can be  initialized, means the object was created. ngOnInit() will run after the constructor.
+
+ngDoCheck() ---> Called during every change detection run. Runs multiple times, ngDoCheck() is done in a very effecient way. It doesn't cost a lot of performance. Partcularly great to use, when we have something to do on every change detection cycle, maybe manually inform Angular about some change that it would not be able to detect otherwise. 
+
+ngAfterContentInit() ---> Called after content (ng-content) has been projected into view. So the view of the parent component escpecially a part that will get added to our component eventually, this hook runs.
+
+ngAfterContentChecked() ---> Called every time the projected component has been checked.
+
+ngAfterViewInit() ---> Called after the component's view (and child views) has been initialized. 
+
+ngAfterViewChecked() ---> Called every time the view (and child views) have been checked
+
+ngOnDestroy() ---> Called once the component is about be destroyed. Great for clean up work, called right before the object itself will be destroyed by Angular.
