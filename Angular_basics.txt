@@ -336,3 +336,7 @@ ngOnDestroy() ---> Called once the component is about be destroyed. Great for cl
 
 			LIFECYCLE HOOKS AND TEMPLATE ACCESS
 Template Access is possible only after ngAfterViewInit() hook is called, not before that. ngAfterViewInit gives you access to the template elements, you can access them and use their values; But before this content is reached, we can't do that; i.e., can't check the value of some element in DOM, because it hasn't been rendered yet!
+
+
+			GETTING ACCESS TO ng-content with @ContentChild
+If the content is going to passed to another component via ng-content, you can get access to the element via @ContentChild() as we get with ViewChild() had that element been in the same component in which wish to access. We get access to the content only after ngAfterContentInit life-cycle gets called. 
