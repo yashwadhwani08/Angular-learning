@@ -346,3 +346,6 @@ If the content is going to passed to another component via ng-content, you can g
 Recap of Attribute directive vs Structural Directive:
 	- Attribute directives sit on elements just like attributes, through them we have no capability to destroy an element from the DOM whereas structural directives too sit on the elements as attributes only but with a leading star(e.g.: *ngIf)(for desugaring) and they are capable of changing the structure of DOM (can destroy/add elements) around this element.
 	- Attribute Directives look like a normal HTML Attribute (possibly with databinding or event binding). Only affect/change the element they are added to.
+
+Recap of ngFor and ngIf:
+	- We can't have multiple template bindings on one element. Use only one attribute prefixed with *, so on same element you can't have ngFor and ngIf! Can't have multiple structural directives on same element.
