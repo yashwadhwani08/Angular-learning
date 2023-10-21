@@ -349,3 +349,37 @@ Recap of Attribute directive vs Structural Directive:
 
 Recap of ngFor and ngIf:
 	- We can't have multiple template bindings on one element. Use only one attribute prefixed with *, so on same element you can't have ngFor and ngIf! Can't have multiple structural directives on same element.
+
+Recap of ngClass and ngStyle:
+	- [ngClass] = "{oddClass: number%2 !== 0}"
+	The property is the class-name to be applied if the value would equate to true on the right side of ':'
+	- '[]' (sqaure brackets) indicate that we are binding to some property on our NG class directive
+	- [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'transparent'}"
+
+Creating a basic directive:
+	Create a file named 'basic-highlight.directive.ts'
+Code:
+
+import { Directive, ElementRef, OnInit } from "@angular/core";
+
+@Directive({
+    // selector: 'appBasicHighlight' // should be a unique selector, typically given a camelCase notation, 'appBasicHighlight' would select it by element
+    selector: '[appBasicHighlight]' //selection by attribute
+
+})
+
+//The idea is to change the backgroundColor when this directive is used for an element, thus we will need access of the element, Angular gives us this access.
+
+// We can inject the element the directive sits on into this directive. We do inject by adding the constructor and passing the argument that we need and Angular will create the object and pass this arguement.
+export class BasicHighlightDirective implements OnInit{
+    //adding 'private' makes this a property of this class as well and automatically assigns this value, the instance we are getting to this property.
+    constructor(private elementRef: ElementRef){
+    }
+
+    ngOnInit(): void {
+        this.elementRef.nativeElement.style.backgroundColor = 'green'
+    }
+}
+
+To use this directive add to the declarations array in app.module.ts,
+and in the tempate of the component where you want to use it, pass it like an attribute, e.g.:  <p appBasicHighlight>Style me with basic directive!</p>
