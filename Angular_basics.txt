@@ -339,4 +339,10 @@ Template Access is possible only after ngAfterViewInit() hook is called, not bef
 
 
 			GETTING ACCESS TO ng-content with @ContentChild
-If the content is going to passed to another component via ng-content, you can get access to the element via @ContentChild() as we get with ViewChild() had that element been in the same component in which wish to access. We get access to the content only after ngAfterContentInit life-cycle gets called. 
+If the content is going to passed to another component via ng-content, you can get access to the element via @ContentChild() as we get with ViewChild() had that element been in the same component in which wish to access. We get access to the content only after ngAfterContentInit life-cycle gets called.
+
+
+			DIRECTIVES DEEP DIVE
+Recap of Attribute directive vs Structural Directive:
+	- Attribute directives sit on elements just like attributes, through them we have no capability to destroy an element from the DOM whereas structural directives too sit on the elements as attributes only but with a leading star(e.g.: *ngIf)(for desugaring) and they are capable of changing the structure of DOM (can destroy/add elements) around this element.
+	- Attribute Directives look like a normal HTML Attribute (possibly with databinding or event binding). Only affect/change the element they are added to.
