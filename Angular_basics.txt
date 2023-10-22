@@ -383,3 +383,27 @@ export class BasicHighlightDirective implements OnInit{
 
 To use this directive add to the declarations array in app.module.ts,
 and in the tempate of the component where you want to use it, pass it like an attribute, e.g.:  <p appBasicHighlight>Style me with basic directive!</p>
+
+Using the Renderer to build a better Attribute Directive:
+	- Earlier, we used ElementRef to access and modify, which is not the best way to modify our template: Since, acccessing elements directly like this is not a good practice, should use different tool 'renderer'; Angular is able to render templates without a dom, then these properties might not be availabe so then this methods would fail or throw error.
+	- To create a directive through cli: ng g d directive-name
+
+Renderer code example:
+
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appBetterHighlight]'
+})
+export class BetterHighlightDirective implements OnInit{
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+
+  // to use render, call the property and there are a couple of helper methods we can use to work with the DOM, we chose setStyle (to set the style of the element, this method takes 3 required parameters (element (not the reference, but the underlying element!, hence nativeElement), style-name you wish to set, style-name-value the value of that style property ) and 1 optional paramter (flag, e.g.: !important))
+  ngOnInit(): void {
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue')
+  }
+}
+
+
+Why renderer is a better approach of accessing the dom - Angular is not limited to running in the browser, it for example works with service workers and in these environments we might not have access to the DOM. So, in that case of directly accessing and modifyingthe DOM using elementRef way would give an error in some circumstances. Hence, it is a better practice to use the renderer for DOM access and to use the methods the renderer provides to access the DOM.
