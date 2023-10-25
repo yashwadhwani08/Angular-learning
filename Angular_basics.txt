@@ -410,7 +410,7 @@ Why renderer is a better approach of accessing the dom - Angular is not limited 
 
 
 Using HostListener to Listen to Host Events:
-	To make the directive respond to events we can make use of HostListener.
+	To make the directive respond to events thate are related to the element on which the directives sits on, we can make use of HostListener.
 E.g.:
 
 In better-highlight.directive.ts
