@@ -435,3 +435,33 @@ Now we can change this property via this.backgroundColor and that would change t
     // );
     this.backgroundColor = 'blue';
   }
+
+Binding to Directive properties:
+	Say, you wanted to change some color dynamically instead of hardcoding in your directive, in that case we can make use of Custom Property Binding (Custom event-binding also works in directive; not used that often) @Input() and calling that property in the element on which the directive is sitting.
+E.g.:
+In better-highlight.directive.ts
+@Input() defaultColor: string = 'transparent';
+@Input() highlightColor: string = 'blue';
+
+In app.component.html
+<p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style me with better directive!</p>
+
+We have two directive like looking things: defaultColor and highlightColor, this is just property binding.
+How does angular know if we want to bind to a property of paragraph or to a property of directive
+	- The angular checks our own directives first before it reaches the native properties of the elements. Thus we can bind to properties of our own directives by placing them on the same element enclosed in square brackets.
+
+In case of ngClass directive, it itself is enclosed within square brackets - it is a typical use case especially if you only have one property to bind to, an alias can be provided
+
+@Input('appBetterHighlight') highlightColor: string = 'blue';
+Here appBetterHighlight would be the alias.
+
+
+<!-- Trying the setting of the alias for highlightColor -->
+      <!-- <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style me with better directive!</p> -->
+      <p [appBetterHighlight]="'red'" [defaultColor]="'yellow'">
+        Style me with better directive!
+      </p>
+
+Note:
+about property binding in general, if we pass a string to a property as square brackets and single quotation marks: [appBetterHighlight]="'red'"
+A shortcut would be removing the square bracktes and removing the single quotation mark. (Speacial case only when passing data as string, passing data via property-binding without square brackets work! (also ommit the single quotation mark))
