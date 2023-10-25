@@ -421,4 +421,17 @@ In better-highlight.directive.ts
 
   @HostListener('mouseleave') mouseLeave(eventData: Event){
     this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent')
-  }	
+  }
+  
+Using HostBinding to Bind to Host Properties:
+	-   @HostBinding('style.backgroundColor') backgroundColor: string = 'transparent';
+Now we can change this property via this.backgroundColor and that would change the backgroundColor of the element
+
+@HostListener('mouseenter') mouseHover(eventData: Event) {
+    // this.renderer.setStyle(
+    //   this.elementRef.nativeElement,
+    //   'background-color',
+    //   'blue'
+    // );
+    this.backgroundColor = 'blue';
+  }
