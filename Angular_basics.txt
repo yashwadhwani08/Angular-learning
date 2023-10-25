@@ -407,3 +407,18 @@ export class BetterHighlightDirective implements OnInit{
 
 
 Why renderer is a better approach of accessing the dom - Angular is not limited to running in the browser, it for example works with service workers and in these environments we might not have access to the DOM. So, in that case of directly accessing and modifyingthe DOM using elementRef way would give an error in some circumstances. Hence, it is a better practice to use the renderer for DOM access and to use the methods the renderer provides to access the DOM.
+
+
+Using HostListener to Listen to Host Events:
+	To make the directive respond to events we can make use of HostListener.
+E.g.:
+
+In better-highlight.directive.ts
+
+@HostListener('mouseenter') mouseHover(eventData: Event){
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'blue')    
+  }
+
+  @HostListener('mouseleave') mouseLeave(eventData: Event){
+    this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', 'transparent')
+  }	
