@@ -465,3 +465,38 @@ Here appBetterHighlight would be the alias.
 Note:
 about property binding in general, if we pass a string to a property as square brackets and single quotation marks: [appBetterHighlight]="'red'"
 A shortcut would be removing the square bracktes and removing the single quotation mark. (Speacial case only when passing data as string, passing data via property-binding without square brackets work! (also ommit the single quotation mark))
+
+What happens behind the scenes on Structural Directives -
+	A star before the direcive indicates angular that this is a structural directive. Why? - Structual directives with a star are just a nicer way for us to use them. Behind the scenes, Angular will transform them into something else, becuase there is no star in Angular syntax when using directives, property binding, etc. There is only property binding, event binding, two-way binding and string interpolation. So behind the scenes, Angular needs to transform the ngIf/ngFor usage into something where we end up with these tools (property-binding and so on).
+	
+ng-template is an element which itself is not rendered, but which allows us to define a template in the end for Angular to use once it determines that this template some element, needs to be rendered becuase this condition is true in this case.
+
+The code with structural directive gets transformed to ng-template with property binding behind the scenes, so below two snippets represent exact same thing, the latter is the transformed version used by Angular:
+
+<div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ even: even % 2 === 0 }"
+            [ngStyle]="{
+              backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let even of evenNumber; let i = index"
+          >
+            {{ even }}
+          </li>
+        </div>
+        
+<ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+              class="list-group-item"
+              [ngClass]="{ even: even % 2 === 0 }"
+              [ngStyle]="{
+                backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+              }"
+              *ngFor="let even of evenNumber; let i = index"
+            >
+              {{ even }}
+            </li>
+          </div>
+        </ng-template>
