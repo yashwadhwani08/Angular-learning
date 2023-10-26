@@ -499,4 +499,65 @@ The code with structural directive gets transformed to ng-template with property
               {{ even }}
             </li>
           </div>
-        </ng-template>
+        </ng-template>        
+
+Building a structural directive
+	@Input() selectorName;
+	selectorName will hold the condition we get
+A method that will be executed whenever that condition changes (some input parameter changes) will be a setter method, hence we use set keyword.
+
+@Input() set selectorName(), hence this selectorName() is now turned into a method, though technically it is important to understand this still is a property!. It is the setter of the property which is a method which gets executed whenever the property changes i.e. when the condition we pass changes or some paramter of this condition. It would receive a boolean value.
+
+@Input() set selectorName(condition: boolean){}
+
+what you want to display on if the condition is true = template (passed to constructor as templateRef)
+
+
+where to display/render = view-container
+constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainer)
+
+@Input() set selectorName(condition: boolean){
+	if(condition){
+	this.viewContainer.createEmbeddedView(this.templateRef);
+	} else {
+	this.viewContainer.clear();
+	}
+	
+Code for custom structural directive:
+unless.directive.ts
+
+import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+
+@Directive({
+  selector: '[appUnless]',
+})
+export class UnlessDirective {
+  @Input() set appUnless(condition: boolean) {
+    if (!condition) {
+      this.vcRef.createEmbeddedView(this.templateRef);
+    } else {
+      this.vcRef.clear();
+    }
+  }
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private vcRef: ViewContainerRef
+  ) {}
+}
+
+
+In app.component.html
+<div *appUnless="onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{ even: even % 2 === 0 }"
+            [ngStyle]="{
+              backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'
+            }"
+            *ngFor="let even of evenNumber; let i = index"
+          >
+            {{ even }}
+          </li>
+        </div>
+  
