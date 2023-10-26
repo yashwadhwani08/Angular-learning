@@ -560,4 +560,14 @@ In app.component.html
             {{ even }}
           </li>
         </div>
-  
+ 
+ ngSwitch - another built-in structural directive -
+ 	Better to be used when creating too many ngIf condition checks. ngSwitch has to be bound to a component property, cases are what needs to be done when the property matches the case.
+ 	
+ 	
+       <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="15">Value is 15</p>
+        <p *ngSwitchDefault>Default value</p>
+      </div> 
