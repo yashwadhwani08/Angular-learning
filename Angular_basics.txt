@@ -570,4 +570,9 @@ In app.component.html
         <p *ngSwitchCase="10">Value is 10</p>
         <p *ngSwitchCase="15">Value is 15</p>
         <p *ngSwitchDefault>Default value</p>
-      </div> 
+      </div>
+      
+      
+      SERVICES AND DEPENDENCY INJECTION
+What are services -
+	Uses case when we want to avoid duplication of code and for storing data and providing data or to establishing commnuication between the components, services come into the play. Service is basically just another piece(class) in your Angular application which acts as a central repository/business unit. Something where you can store or centralize your code in.
