@@ -606,4 +606,15 @@ export class NewAccountComponent {
 
 This way, we are not creating the instance manually,but Angular does it for us now.
 
+Alternative Injection Syntax:
+	Injecting dependenices into components via the constructor functions is the most common way, however there is an alternative way of injecting dependencies - via Anguar's inject() function.
+e.g.:
 
+import { Component, Input, Output, inject } from '@angular/core'; 
+@Component(...)
+export class AccountComponent { 
+ private loggingService?: LoggingService; // <- must be added
+ constructor() {
+    this.loggingService = inject(LoggingService);
+  }
+ } 
