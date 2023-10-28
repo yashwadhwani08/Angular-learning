@@ -580,3 +580,30 @@ What are services -
 	
 A service is just a normal typescript class, we don't attach decorator like @Service() as in the case of Directive (@Directive()) or Component (@Component()).
 We can create instances of services manually in the components we want to use them, but that's a wrong way, that's not how services are used in angular. Angular provides a much better way to getting access to your services, therefore the instances should not be created manually.
+
+Angular Dependency Injector = tool offered by Angular to access the services.
+Dependency = a class of ours will depend on. For example, a component that uses logging will be dependent on logging service, because we want to call a method in that service. 
+
+Dependency injector simply injects this dependency (an instance of this class, here logging service class) into our component automatically. We just need to inform Angular that we require such a instance. We add a constructor to the class where we require the service, bind a typescript property to type-assignment which is the class you want to get injected (basically, service class name).
+
+A Typescript shortcut to add an accessor in front of the name of the argument to instantly create a property with the same name and bind the value to it.
+	constructor(private loggingService: LoggingService)
+	
+This way of instanting a property in the constructor informs angular that we will need an instance of this logging service. This way Angular knows what we want, but it doesn't kow how to give us such an instance, for that we need to register service to the provioder in the component. Provide simply means we tell Angular how to create it. To do that you need to add another property called provides in the component decorator, to that array pass the class name of the service, e.g.:
+
+@Component({
+  selector: 'app-new-account',
+  templateUrl: './new-account.component.html',
+  styleUrls: ['./new-account.component.css'],
+  providers: [LoggingService]
+})
+export class NewAccountComponent {
+ constructor(private loggingService: LoggingService){}
+ 
+ onInit(){
+ this.loggingService.logStatusChange('active');
+}
+
+This way, we are not creating the instance manually,but Angular does it for us now.
+
+
