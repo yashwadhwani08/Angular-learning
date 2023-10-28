@@ -576,3 +576,7 @@ In app.component.html
       SERVICES AND DEPENDENCY INJECTION
 What are services -
 	Uses case when we want to avoid duplication of code and for storing data and providing data or to establishing commnuication between the components, services come into the play. Service is basically just another piece(class) in your Angular application which acts as a central repository/business unit. Something where you can store or centralize your code in.
+	
+	
+A service is just a normal typescript class, we don't attach decorator like @Service() as in the case of Directive (@Directive()) or Component (@Component()).
+We can create instances of services manually in the components we want to use them, but that's a wrong way, that's not how services are used in angular. Angular provides a much better way to getting access to your services, therefore the instances should not be created manually.
