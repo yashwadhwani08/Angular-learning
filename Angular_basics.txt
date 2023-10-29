@@ -625,3 +625,5 @@ Understanding the Hierarchical Injector:
 		1. The highest possible level - 'AppMoule' - Same instance of service is available Application-wide.
 		2. The next level - 'AppComponent' - Same instance of service is available for all components (but 'not for other services'!)
 		3. The lowest level - 'Any other component' - Same instance of  service is available for the Component and all its schild components. This will actually even override if we were to provide the same service on a higher level.
+		
+Providers array basically tells Angular which instance we want, hence if you want that child components should use the same instance as that of the parent component, having providers array in parent component containing the instance and the child component's providers array should not contain the instance or else it would be treated as the different instance if child component's providers array contains the name of that class too! 
