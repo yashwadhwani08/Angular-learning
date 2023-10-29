@@ -617,4 +617,11 @@ export class AccountComponent {
  constructor() {
     this.loggingService = inject(LoggingService);
   }
- } 
+ }
+ 
+Understanding the Hierarchical Injector:
+	Angular Dependency injector is hierarchical injector, i.e. if we provide a service is some place of our app, say one component, the Angular framework knows how to create an instance of that service for this component and all its child components!! And thus, all the sub-components in the tree from where this service was provided will receive the same instance of the service.
+	Other places to provide service:
+		1. The highest possible level - 'AppMoule' - Same instance of service is available Application-wide.
+		2. The next level - 'AppComponent' - Same instance of service is available for all components (but 'not for other services'!)
+		3. The lowest level - 'Any other component' - Same instance of  service is available for the Component and all its schild components. This will actually even override if we were to provide the same service on a higher level.
