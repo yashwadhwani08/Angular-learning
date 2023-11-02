@@ -643,3 +643,20 @@ To emit an event, in the component file use this object of event-emitter:
 To listen(subscribe) to this event, use the subscribe in the component, you want to listen to, e.g.:
 	In new-account.component.ts:
 		this.accountsService.statusUpdated.subscribe((status: string) 			=> alert('New Status: ' + status));
+		
+A Different way of Injecting Services -
+	We can provide application-wide services in a different way. Instead of adding service class to the providers[] array in AppModules, you can set the following config in @Injectable()
+	@Injectable({providedIn: 'root'})
+	export class MyService { . . . }
+This is same as
+	export class MyService { . . . }
+	and 
+	import { MyService } from './path/to/my.service';
+ 
+	@NgModule({
+	    ...
+	    providers: [MyService]
+	})
+	export class AppModule { ... }
+	
+With the providedIn syntax, services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed automatically. This can lead to better performance and loading speed.
