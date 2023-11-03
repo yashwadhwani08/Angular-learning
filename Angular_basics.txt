@@ -660,3 +660,7 @@ This is same as
 	export class AppModule { ... }
 	
 With the providedIn syntax, services can be loaded lazily by Angular (behind the scenes) and redundant code can be removed automatically. This can lead to better performance and loading speed.
+
+
+			ROUTING
+Angular ships with its own router which allows you to change the URL in the URL bar and still only use one page, but exchange major parts or a lot of parts of that page. To the user, it looks like a new page was loaded because maybe only the header is the same, but behind the scenes, it is actually javascript changing a lot of parts in your DOM in your page making it look like a new page was rendered, but in the end it is still a single-page-application!
