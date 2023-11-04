@@ -664,3 +664,34 @@ With the providedIn syntax, services can be loaded lazily by Angular (behind the
 
 			ROUTING
 Angular ships with its own router which allows you to change the URL in the URL bar and still only use one page, but exchange major parts or a lot of parts of that page. To the user, it looks like a new page was loaded because maybe only the header is the same, but behind the scenes, it is actually javascript changing a lot of parts in your DOM in your page making it look like a new page was rendered, but in the end it is still a single-page-application!
+
+Setting up and Loading Routes:
+	Routes can be defined in app.module.ts since they are responsible for our whole application. An array containing each route as a Javascript object can be set up. A route JS object needs to have two properties essentially - path(string; what gets in the url after domian, don't use slash '/'), component(what should happen when this path is reached -action, typically a component is specified, ultimately which component's template should be rendered in the end).E.g.:
+		import { Routes } from '@angular/router'
+		const appRoutes: Routes = [
+		  {path: '', component: HomeComponent},
+		  {path: 'servers', component: ServersComponent},
+		  {path: 'users', component: UsersComponent},
+		]
+This constant appRoutes alone will do nothing, we need to inform Angular to use this constant, for that we need to register these routes in our application by adding a new import-RouterModule (from @angular/core) in imports array. This import adds the routing functionality in our application, but still our routes are not registered. Hence RouterModule has a special method - .forRoot(appRoutes)
+
+This .forRoot() allows us to register some routes for our main application here.
+
+//app.module.ts
+
+import { RouterModule, Routes } from '@angular/router';
+const appRoutes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'servers', component: ServersComponent },
+  { path: 'users', component: UsersComponent },
+];
+
+@NgModule({
+...
+imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
+  providers: [ServersService],
+  bootstrap: [AppComponent],
+ })
+ 
+Now our routes are registered in our Angular app on this RouterModule, hence Angular now knows our routes! Now we need to add a place to our application where the currently selected component would be rendered. The right place to inform Angular where to load the compoent is the place where you actually want to render your route, by using a special directive that is shipped with Angular, the <router-outlet></router-outlet>, it looks like a component but it is still a directive (directives may have any selector including the component/element-style selector). This router-outlet simply marks the place in our document where we want Angular router to load the component of the currently selected route.
+ 
