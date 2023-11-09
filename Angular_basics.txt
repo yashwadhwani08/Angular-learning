@@ -695,3 +695,25 @@ imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
  
 Now our routes are registered in our Angular app on this RouterModule, hence Angular now knows our routes! Now we need to add a place to our application where the currently selected component would be rendered. The right place to inform Angular where to load the compoent is the place where you actually want to render your route, by using a special directive that is shipped with Angular, the <router-outlet></router-outlet>, it looks like a component but it is still a directive (directives may have any selector including the component/element-style selector). This router-outlet simply marks the place in our document where we want Angular router to load the component of the currently selected route.
  
+ 
+ Navigating with our router links
+ 	If we add the links via href attribute of a tag, this leads to app reload(refresh) with every link we click. With every link click, a new request gets sent to the server and it returns us a new page. Since, this page is still our Angular app with routes registered on it, it is able to give us the correct route. Not the best behaviour: 
+ 	Since, it restarts our app on every navigation, which means our whole application state will be lost!
+ 	<ul class="nav nav-tabs">
+        <!-- Adding links via href makes the app to reload to display the component -->
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/servers">Servers</a></li>
+        <li role="presentation"><a href="/users">Users</a></li>
+      </ul>
+      
+	For navigation, there is a special directive provided in Angular - routerLink. 'routerLink' is able to parse a string. This will tell Angular that this element on which routerLink is placed here, will serve as a link in the end, but will handle a click differently (no refresh => no application state loss).
+	<li role="presentation" class="active"><a routerLink="/">Home</a></li>
+        <li role="presentation"><a routerLink="/servers">Servers</a></li>
+Another way of using routerLink is with property binding (more specifically to bind to some non-string data)
+	<li role="presentation"><a [routerLink]="['/users']">Users</a></li>
+
+If you want to construct a URL say, localhost:4200/users/user-detail, it would be <li role="presentation"><a [routerLink]="['/users','user-detail']">Users</a></li>
+
+Note: We don't give the leading slash(required only for to make this an absolute path) for the subsequent parts/segments of the urls as elements to this array here. This way of binding to an array gives us more fine-grain control over routerLink. (In the array, we specify all the segments of the path as elements in this array). This array notation allows you to construct more complex paths very easily.
+
+RouterLink, the directive catches the click on the element prevents the defualt (which would be to send a request to server, instead it analyzes what we passed in the component to routerLink directive (path/array of path elements), parses it, checks if it finds a fitting route in our configuration.). RouterLink also provides speed as it is much faster than reloading the page all the time.
