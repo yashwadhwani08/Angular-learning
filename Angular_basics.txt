@@ -722,3 +722,8 @@ Understanding Navigation Paths:
 	Navigation paths when used with leading slash to the routerLinks gets appended to the root-domain (e.g.: localhost:4200/). These are called absolute paths.
 	
 	Navigation paths when used without a leading slash or the ones that starts with dot(s) (., like in directory) are called relative paths and are appended to the the current path (not necessarily to the root domain)
+	
+Styling Active Router Links:
+	Angular gives a specific directive for this: 'routerLinkActive'. This directive can be added to a warpping element or on the link element (a-href tag) itself. It will attach the class you specify in the value of this diective as a string. It will dynamically attach the class to the element it sits on. routerLinkActive analyses your currently loaded path that checks which links lead to a router which uses this path and by default it marks an element as active (adds the given css class) if it contains the path you are on or if this link is part of the path which is currently loaded. To avoid that an empty path link (say, homepage at '/') be marked as active even if move away to some other tab (say, users at '/users') in navigation bar, add some configuration to the routerLinkActive directive with routerLinkActiveOptions directive which needs some property binding because we don't just pass a string there, we can pass a JS object
+	e.g.: [routerLinkActiveOptions]="{exact: true}"
+exact is a reserved property on this object which you pass to routerLinkActiveOptions, which will tell angular, only add this routerLinkActive class if the exact full path is what the link leads to in routerLink.
