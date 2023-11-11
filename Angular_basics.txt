@@ -740,3 +740,17 @@ Navigating Programatically:
   }
  (We could have passed a relative path, but here we would have to control what this should be relative to)
 
+Using Realtive Paths in Prorammatic Navigation
+	Even if we pass the relative path (without '/') to the naviagte method of Router, it still take is absolute exact path (taking root domain and appending to it). When using routerLink we do get an error sometimes when we don't a proper relative path (path that exists). Unlike, the routerLink the navigate method doesn't know on which route you are currently on, the routerLink always knows on which component it sits, in which component's template therefore knows what the currently loaded route is. To tell navigate method, where we are currently in (the current route), we need to pass a second arguement to navigate method, a JS object which can be used to configure the navigation action, one of the properties is 'relativeTo' property, which basically defines relative to which route, this link should be loaded (by default, it is always the root domain). relativeTo property has to given a route as value for which we used ActivatedRoute (another service which we need to inject.) ActivatedRoute simply injects the currently active route. So now navigate property will be finding for the relativeRoute in connection with the relativeTo route.
+	
+E.g.:
+constructor(
+    private serversService: ServersService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+) {}
+
+...
+this.router.navigate(['servers'],{relativeTo: this.activatedRoute});
+
+
