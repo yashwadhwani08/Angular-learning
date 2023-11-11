@@ -753,4 +753,11 @@ constructor(
 ...
 this.router.navigate(['servers'],{relativeTo: this.activatedRoute});
 
+Passing Parameters to Routes:
+	We can add parameters(dynamic segments) to our route by adding a colon followed by any name (say, id). Later, we would be able to retrieve the parameter inside of the loaded component by that name you specify here (i.e. by id). Colon tells angular that this is a dynamic part of the path.
+E.g.:   { path: 'users/:id', component: UserComponent },
 
+Fetching Route Parameters:
+	We can make use of activatedRoute (from @angular/core) in the component which gets loaded to get the route parameter by using snapshot property. Snapshot property of our currrently active route we have 'params' JS object and there we need to check for the name we used in setting up that route for parameter. We can have as many route parameters we want.
+E.g.: id: this.route.snapshot.params['id'],
+      name: this.route.snapshot.params['name'],
