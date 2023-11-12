@@ -795,4 +795,31 @@ this.paramsSubscription = this.route.params.subscribe((params: Params) => {
 ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
   }
+  
+Passing Query Parameters and Fragments:
+	Query params = params separated by question mark and we can have multiple ones separated with '&' signs. 
+	We can have a fragment in the URLs (separated by '#') used for jumping to a specific place in your app.
 
+In router-link directive approach:	
+for query params: When using a link in template, we add a new property of routerLink directive, we can bind to queryParams property. queryParams is not a new directive, it is just another bindable property of the routerLink directive. We pass a JS object, where we can define key-value pairs of the parameters we want to edit.
+	E.g.:
+	[routerLink]="['/servers', 5, 'edit']"
+	[queryParams]="{allowEdit: '1', user: 'Max'}"
+it resolves to the URl = localhost:4200/servers/5/edit?allowEdit=1&user=Max
+
+for fragment property: we can pass a string to this property
+E.g.: [routerLink]="['/servers', 5, 'edit']"
+        [queryParams]="{allowEdit: '1', user: 'Max'}"
+        [fragment]="'loading'"
+        
+        //or fragment = "loading
+it resolves to the URl = 
+localhost:4200/servers/5/edit?allowEdit=1&user=Max#loading
+
+In router.navigate method (programmatic approach):
+	this.router.navigate(['/servers', id, 'edit'], {
+      queryParams: { allowEdit: '1' },
+      fragment: 'loading',
+    });
+    
+    In the JS object, where we can define 'relativeTo' property we can define queryParams and fragment too.
