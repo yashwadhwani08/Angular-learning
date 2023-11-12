@@ -761,3 +761,19 @@ Fetching Route Parameters:
 	We can make use of activatedRoute (from @angular/core) in the component which gets loaded to get the route parameter by using snapshot property. Snapshot property of our currrently active route we have 'params' JS object and there we need to check for the name we used in setting up that route for parameter. We can have as many route parameters we want.
 E.g.: id: this.route.snapshot.params['id'],
       name: this.route.snapshot.params['name'],
+      
+Fetching Route Parameters Reactively:
+	For fetching route parameters reactively, we can use the route object, instead of 'snapashot', we can use 'params' property itslef on the route
+
+    Difference between params propertry on snapshot and on the route itself: Params when used on the route is an observable. Observables are a feature added by some other third party package, not by Angular but heavily used by Angular which allow you to easily work with asynchronous tasks. Here, in this case it is an asynchronous task, because the parameteres of your currently loaded route might change at some point in the future if user clicks this link, but we don't know when, we don't know if they will surely change, we don't know how long it will take, hence we can't block our code and wait for this to happen here, maybe it might never happen. So an observable is an easy way to subscribe to some event which might happen in the future to then execute some code when it happens without having to wait for it now.
+
+    Params is one such observable, we can observe it and we do so by subscribe() method. subscribe can take free functions you pass here as arguments, the first one is important, it will be fired whenever new data is sent fruited observable, in other words whenever the parameters chnage in this use case, then the first argument (the function) is executed. Params will hold the parameters you define in the route as properties.
+
+
+    //this code will be executed only when the parameters change post initialization
+    this.route.params.subscribe((params: Params) => {
+      this.user.id = params['id'];
+      this.user.name = params['name'];
+    });
+    
+ This observable approach should be taken to be really safe agianst changes not being reflected in your template. If you know, the component you are on may never be reloaded from within the component, then you don't need this observable approach, snapshot approach will suffice, because you know your component will 100% of the time be recreated when it is reached, because there is no other way of reaching it whilist being on that component. You don't subscribe approach. In all other cases, make sure to make use of subscribe approach to get informed about any changes in your route parameters.
