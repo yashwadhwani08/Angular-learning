@@ -823,3 +823,13 @@ In router.navigate method (programmatic approach):
     });
     
     In the JS object, where we can define 'relativeTo' property we can define queryParams and fragment too.
+    
+Retrieving Query Parameters and Fragments:
+	Just like, with params we have reactive(observable) and non-reactive(snapshot) approach here.
+	// This snapshot approach is non-reactive, only runs/updated once the component is initilaized so when changing queryParams/fragment whilst on the component this would change the URL but the component won't be rerendered (reinitialized)
+    console.log(this.route.snapshot.queryParams);
+    console.log(this.route.snapshot.fragment);
+
+    // we can use this observable approach to reactive retrieval of queryParams and fragment
+    this.route.queryParams.subscribe((queryParam: object)=>{console.log(queryParam['allowEdit'])});
+    this.route.fragment.subscribe((fragment: string)=>{console.log(fragment)});
