@@ -777,3 +777,22 @@ Fetching Route Parameters Reactively:
     });
     
  This observable approach should be taken to be really safe agianst changes not being reflected in your template. If you know, the component you are on may never be reloaded from within the component, then you don't need this observable approach, snapshot approach will suffice, because you know your component will 100% of the time be recreated when it is reached, because there is no other way of reaching it whilist being on that component. You don't subscribe approach. In all other cases, make sure to make use of subscribe approach to get informed about any changes in your route parameters.
+
+Note: Angular does something for you in the background, which is super important, it cleans up the subscription we set up whenever this component is destroyed. If it wouldn't do this, what are we doing here, we are subscribing to parameter changes, any say, we leave this component and later you come back. Once we left, this component was destroyed, when we come back a new one will be created, but this subscription here will always live on in memory (because it is not closely tied to your component, so if the component is destroyed, the subscription won't!)! In this Angular is making sure that when the component is destroyed, so is the subscription getting destroyed.
+
+We could also take care of destroying the subscription once the component is destroyed by using OnDestroy lifecycle hook and using unsubscribe method on the subscription. rxjs is the the package which offers all the observables functionality, it is not shipping with Angular but Angular is using this package
+
+import { Subscription } from 'rxjs/Subscription';
+  
+...
+paramsSubscription: Subscription;
+
+this.paramsSubscription = this.route.params.subscribe((params: Params) => {
+      this.user.id = params['id'];
+      this.user.name = params['name'];
+    });
+    
+ngOnDestroy(): void {
+    this.paramsSubscription.unsubscribe();
+  }
+
