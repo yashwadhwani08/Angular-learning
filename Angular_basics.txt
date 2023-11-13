@@ -833,3 +833,21 @@ Retrieving Query Parameters and Fragments:
     // we can use this observable approach to reactive retrieval of queryParams and fragment
     this.route.queryParams.subscribe((queryParam: object)=>{console.log(queryParam['allowEdit'])});
     this.route.fragment.subscribe((fragment: string)=>{console.log(fragment)});
+    
+Setting up Child(Nested) Routes:
+	We can make use of children property on the Route object and that array takes an array input in which the route information for child has to be passed. E.g.:
+	  {
+    path: 'servers',
+    component: ServersComponent,
+    children: [
+      // The remaining path and the component to load on that path has to mentioned within the children array in the parent route. To load the children route, we need another router-outlet, because the one used in app.component.html is responsible fpr top-level routes, not their children. The outlet in this case, would be created/put inside servers-component template. 
+      { path: ':id/edit', component: EditServerComponent },
+      { path: ':id', component: ServerComponent },
+    ],
+  },
+  
+  On the parent-component (parent-route-component):
+ E.g.:
+  <!--servers.component.html -->
+  <!-- Adding router-outlet directive here for loading all child routes of the route being loaded on the servers-component, which is /servers route here -->
+    <router-outlet></router-outlet>
