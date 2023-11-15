@@ -851,3 +851,15 @@ Setting up Child(Nested) Routes:
   <!--servers.component.html -->
   <!-- Adding router-outlet directive here for loading all child routes of the route being loaded on the servers-component, which is /servers route here -->
     <router-outlet></router-outlet>
+    
+Configuring the handling of Query Parameters:
+	Query Parameters are usually gone when we navigate away from the component theey were configured on. If you want to preserve them, the component where you are navigating from, add another property to JS object(2nd param) in navigate method, 'queryParamsHandling'. It takes a string as value, it could be 'merge' if you want to merge our old query params with any new we might add here. If you don't want to add any new ones, you can choose 'preserve' (which will override the default behavior) which is to drop the queryParams and make sure that the old ones are kept. If you were to add new ones, the old ones would actually override the new ones, so 'merge' should be used in such case.
+	
+Redirecting and Wildcard routes:
+	When we enter a route that doesn't exist, it gives an error in the console. To fix this, we need to set up a route which will handle all the routes we don't have set up and redirecting requests.
+	For reddirecting route, in the config set up of the route, if you don't want to specify a component to load, we can use 'redirectTo' property (alternative to 'component'. Component loads a specific component, 'redirectTo' redirects to another path).
+E.g.: // Redirecting route
+  { path: 'something', redirectTo: '/not-found' },
+  
+  //To specify all the URLs/routes which are not covered by your app is by using '**' route. It is called the wildcard route, which means catch all paths  you don't know. Order is important. This wildcard route should be the last one in the array of routes! Routes get parsed from top to bottom here.
+  { path: '**', redirectTo: '/not-found' },
