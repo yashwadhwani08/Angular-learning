@@ -863,3 +863,16 @@ E.g.: // Redirecting route
   
   //To specify all the URLs/routes which are not covered by your app is by using '**' route. It is called the wildcard route, which means catch all paths  you don't know. Order is important. This wildcard route should be the last one in the array of routes! Routes get parsed from top to bottom here.
   { path: '**', redirectTo: '/not-found' },
+  
+Sometimes, redirection path matching can give you an error. For example,
+By default, Angular matches paths by prefix. That means, that the following route will match both /recipes  and just / 
+
+{ path: '', redirectTo: '/somewhere-else' }
+
+Since the default matching strategy is "prefix" , Angular checks if the path you entered in the URL does start with the path specified in the route. Of course every path starts with ''
+
+To fix this behavior, you need to change the matching strategy to "full" :
+
+{ path: '', redirectTo: '/somewhere-else', pathMatch: 'full' } 
+
+Now, you only get redirected, if the full path is ''  (so only if you got NO other content in your path in this example).
