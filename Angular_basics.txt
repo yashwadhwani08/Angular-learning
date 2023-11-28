@@ -876,3 +876,35 @@ To fix this behavior, you need to change the matching strategy to "full" :
 { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' } 
 
 Now, you only get redirected, if the full path is ''  (so only if you got NO other content in your path in this example).
+
+Outsourcing the Route configuration:
+	Typically, if you have more than 3 routes, you don't add it directly to your app.module.ts, instead create a file for application as whole: app-routing.module.ts
+	
+import { NgModule } from '@angular/core';
+import ...
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+	{ path: '', component: HomeComponent },
+	{ path: '', component: UsersComponent, children: [
+		{ path: ':/id/:name', component: UserComponent}
+	] },
+];
+
+@NgModule({
+	imports: [
+	RouterModule.forRoot(appRoutes),
+	]
+	  //   To add app-routing-module back to app.module.ts, we need to use exports array, Exports array tells Angular what should be accessible from this module if this module were to be added to the imports of another module. Here we want, RouterModule to be accessible. We don't add forRoot() because we have already configured it in imports, added our own routes to it. Now, we simply export this configured RouterModule
+	  exports: [RouterModule],
+})
+export class AppRoutingModule{
+	
+}
+
+In app.module.ts
+import { AppRoutingModule } from './app-routing.module';
+//Add AppRoutingModule to the imports array in app.module.ts in the @NgModule directive 
+ 
+ imports: [BrowserModule, FormsModule, AppRoutingModule],
+
