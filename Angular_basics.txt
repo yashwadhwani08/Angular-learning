@@ -908,3 +908,7 @@ import { AppRoutingModule } from './app-routing.module';
  
  imports: [BrowserModule, FormsModule, AppRoutingModule],
 
+
+
+Route Guards:
+	A functionality, logic, code which is executed before a route is loaded, or once you want to leave a route. A feature built into the angular router running some code before the component is loaded. We will use the canActivate() card.
