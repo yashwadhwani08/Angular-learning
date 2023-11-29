@@ -1007,4 +1007,35 @@ const appRoutes: Routes = [
     canActivate: [AuthGuard],
 }]
 
+Protecting Child(Nested) routes with canActivateChild
 
+//auth-guard.service.ts
+export class AuthGuard implements CanActivate, CanActivateChild {
+...
+	canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+      return this.canActivate(route, state);
+    }
+}
+    
+//app-routing.module.ts
+      {
+    path: 'servers',
+    component: ServersComponent,
+
+    // To use guard, we use the property canActivate in the route, it takes an array of all the guards you want to apply to this route and it will automatically get applied to all the child routes.
+
+    // using AuthGuard on the 'servers' ensusres that servers and all its child routes are now only accessible if the AuthGuard-canActivate() method returns true in the end.
+
+    // canActivate: [AuthGuard],
+
+    // canActivateChild propety can be used to protect the nested routes, also takes an array of services which acts as guards (which implement the right interfaces)
+    canActivateChild: [AuthGuard],
+    children: [
+      // The remaining path and the component to load on that path has to mentioned within the children array in the parent route. To load the children route, we need another router-outlet, because the one used in app.component.html is responsible fpr top-level routes, not their children. The outlet in this case, would be created/put inside servers-component template.
+
+      // Using parameters in route for dynamic data in route
+
+      { path: ':id/edit', component: EditServerComponent },
+      { path: ':id', component: ServerComponent },
+    ],
+  },
